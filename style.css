@@ -1,106 +1,260 @@
-:root{
-    --background: #101114;
-    --primary-color: #1c1d20;
-    --secondary-color: #ffffff84;
+/* ==========================================================================
+   Design Tokens — Futuristic HUD Palette
+   ========================================================================== */
+:root {
+    --background: #06070b;
+    --background-alt: #0b0e16;
+    --primary-color: rgba(22, 26, 38, 0.55);
+    --primary-border: rgba(45, 239, 223, 0.18);
+    --secondary-color: #8d96ab;
     --accent-color: #2defdf;
-    --text-color: #f9f9f9;
+    --accent-soft: rgba(45, 239, 223, 0.35);
+    --accent-violet: #7b61ff;
+    --danger: #ff3b6b;
+    --text-color: #f4f7fb;
+
+    --font-ui: 'Segoe UI', 'Tahoma', 'Geneva', 'Verdana', sans-serif;
+    --font-mono: 'Consolas', 'SFMono-Regular', 'Courier New', monospace;
+
+    --radius-pill: 999px;
+    --radius-md: 16px;
+    --ease: cubic-bezier(0.4, 0, 0.2, 1);
 }
-*{
+
+/* ==========================================================================
+   Reset
+   ========================================================================== */
+* {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
-html{
-    font-family: 'Segoe UI', 'tahoma', 'geneva','verdana', sans-serif;
+
+html {
+    font-family: var(--font-ui);
     font-size: 10pt;
     color: var(--text-color);
 }
-body{
+
+body {
     min-height: 100vh;
     padding: 10px;
-    background: var(--background);
+    background:
+        radial-gradient(circle at 50% -10%, rgba(45, 239, 223, 0.08), transparent 55%),
+        radial-gradient(circle at 90% 110%, rgba(123, 97, 255, 0.10), transparent 50%),
+        repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.025) 0px, rgba(255, 255, 255, 0.025) 1px, transparent 1px, transparent 40px),
+        repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.025) 0px, rgba(255, 255, 255, 0.025) 1px, transparent 1px, transparent 40px),
+        var(--background);
+    background-attachment: fixed;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-h1{
+
+::selection {
+    background-color: var(--accent-color);
+    color: var(--background);
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(var(--accent-color), var(--accent-violet));
+    border-radius: var(--radius-pill);
+}
+
+/* ==========================================================================
+   Heading
+   ========================================================================== */
+h1 {
     margin-top: 100px;
-    margin-bottom: 20px;
+    margin-bottom: 28px;
     font-size: 3rem;
-    font-weight: 600;
+    font-weight: 700;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     text-align: center;
-    color: var(--accent-color);
+    color: var(--text-color);
+    background: linear-gradient(90deg, var(--accent-color), var(--accent-violet) 80%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 18px rgba(45, 239, 223, 0.35));
+    position: relative;
 }
-.wrapper{
+
+h1::after {
+    content: "";
+    display: block;
+    width: 90px;
+    height: 2px;
+    margin: 16px auto 0;
+    background: linear-gradient(90deg, transparent, var(--accent-color), var(--accent-violet), transparent);
+    box-shadow: 0 0 12px var(--accent-soft);
+}
+
+/* ==========================================================================
+   Layout
+   ========================================================================== */
+.wrapper {
     width: 700px;
     max-width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 12px;
 }
-#todo-input{
-    box-sizing: border-box;
-    padding: 12px 20px;
-    width: 100%;
-    background: none;
-    border: 2px solid var(--secondary-color);
-    border-radius: 50px;
-    font: inherit;
-    color: var(--text-color);
-    caret-color: var(--accent-color);
-}
-#todo-input:focus{
-    outline: none;
-    border-color: var(--accent-color);
-}
-form{
+
+/* ==========================================================================
+   Input Form
+   ========================================================================== */
+form {
     position: relative;
 }
-#add-button{
-    position: absolute;
-    top:0;
-    right: 0;
-    background-color: var(--accent-color);
-    height: 100%;
-    padding: 0 30px;
-    border: none;
-    border-radius: 50px;
+
+#todo-input {
+    box-sizing: border-box;
+    padding: 14px 130px 14px 22px;
+    width: 100%;
+    background: var(--primary-color);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid var(--primary-border);
+    border-radius: var(--radius-pill);
     font: inherit;
-    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--text-color);
+    caret-color: var(--accent-color);
+    transition: border-color 250ms var(--ease), box-shadow 250ms var(--ease);
+}
+
+#todo-input::placeholder {
+    color: var(--secondary-color);
+    font-family: var(--font-mono);
+    font-size: 0.92em;
+}
+
+#todo-input:hover {
+    border-color: var(--accent-soft);
+}
+
+#todo-input:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(45, 239, 223, 0.12), 0 0 24px rgba(45, 239, 223, 0.18);
+}
+
+#add-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    padding: 0 32px;
+    background: linear-gradient(135deg, var(--accent-color), var(--accent-violet));
+    border: none;
+    border-radius: var(--radius-pill);
+    font: inherit;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-size: 0.85em;
     color: var(--background);
     cursor: pointer;
+    box-shadow: 0 0 18px rgba(45, 239, 223, 0.25);
+    transition: box-shadow 250ms var(--ease), transform 150ms var(--ease), filter 250ms var(--ease);
 }
-.todo{
+
+#add-button:hover {
+    box-shadow: 0 0 28px rgba(45, 239, 223, 0.45), 0 0 40px rgba(123, 97, 255, 0.25);
+    filter: brightness(1.08);
+}
+
+#add-button:active {
+    transform: translateY(1px) scale(0.97);
+}
+
+/* ==========================================================================
+   Task List
+   ========================================================================== */
+.todo {
+    position: relative;
     margin-bottom: 10px;
-    padding: 0 16px;
+    padding: 0 18px;
     background: var(--primary-color);
-    border-radius: 15px;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid var(--primary-border);
+    border-left: 2px solid var(--accent-color);
+    border-radius: var(--radius-md);
     display: flex;
     align-items: center;
+    overflow: hidden;
+    transition: border-color 250ms var(--ease), box-shadow 250ms var(--ease), transform 200ms var(--ease);
 }
-.todo .todo-text{
-    padding: 10px;
+
+.todo::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, rgba(45, 239, 223, 0.06), transparent 40%);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 250ms var(--ease);
+}
+
+.todo:hover {
+    border-color: var(--accent-soft);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.35), 0 0 16px rgba(45, 239, 223, 0.08);
+    transform: translateY(-1px);
+}
+
+.todo:hover::before {
+    opacity: 1;
+}
+
+.todo .todo-text {
+    padding: 12px;
     padding-right: 0;
     flex-grow: 1;
+    letter-spacing: 0.01em;
     transition: 250ms ease;
 }
-.delete-button{
-    padding:3px;
+
+.delete-button {
+    padding: 3px;
     background: none;
     border: none;
+    border-radius: 6px;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    transition: background-color 200ms ease;
 }
-.delete-button svg{
+
+.delete-button:hover {
+    background-color: rgba(255, 59, 107, 0.12);
+}
+
+.delete-button svg {
     transition: 250ms ease;
 }
-.delete-button:hover svg{
-    fill:#ff0000;
-    transition: fill 0.2s ease;
+
+.delete-button:hover svg {
+    fill: var(--danger);
+    filter: drop-shadow(0 0 6px rgba(255, 59, 107, 0.6));
+    transition: fill 0.2s ease, filter 0.2s ease;
 }
-.custom-checkbox{
+
+/* ==========================================================================
+   Custom Checkbox
+   ========================================================================== */
+.custom-checkbox {
     border: 2px solid var(--accent-color);
     border-radius: 50%;
     min-height: 20px;
@@ -111,33 +265,54 @@ form{
     flex-shrink: 0;
     transition: 250ms ease;
     cursor: pointer;
+    box-shadow: 0 0 8px rgba(45, 239, 223, 0.25);
 }
-input[type="checkbox"]:checked ~ .custom-checkbox{
-    background-color: var(--accent-color);
+
+.custom-checkbox:hover {
+    box-shadow: 0 0 14px rgba(45, 239, 223, 0.5);
 }
-input[type="checkbox"]:checked ~ .custom-checkbox svg{
-    fill: var(--primary-color);
+
+input[type="checkbox"]:checked ~ .custom-checkbox {
+    background: linear-gradient(135deg, var(--accent-color), var(--accent-violet));
+    box-shadow: 0 0 16px rgba(45, 239, 223, 0.6);
 }
-input[type="checkbox"]:checked ~ .todo-text{
+
+input[type="checkbox"]:checked ~ .custom-checkbox svg {
+    fill: var(--background);
+}
+
+input[type="checkbox"]:checked ~ .todo-text {
     text-decoration: line-through;
     color: var(--secondary-color);
 }
-input[type="checkbox"]{
+
+input[type="checkbox"] {
     display: none;
 }
-@media (max-width: 500px){
-    html{
+
+/* ==========================================================================
+   Responsive
+   ========================================================================== */
+@media (max-width: 500px) {
+    html {
         font-size: 12pt;
     }
-    #add-button{
+
+    #add-button {
         position: unset;
         width: 100%;
         margin-top: 10px;
         padding: 15px;
         height: auto;
     }
-    h1{
-        margin-top: 50px;
-        font-size: 15vw;
+
+    #todo-input {
+        padding: 14px 22px;
     }
-}    
+
+    h1 {
+        margin-top: 50px;
+        font-size: 13vw;
+        letter-spacing: 0.06em;
+    }
+}
