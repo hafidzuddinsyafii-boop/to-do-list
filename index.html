@@ -1,57 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>todo app</title>
+    <title>Document</title>
     <link rel="stylesheet" href="style.css">
+    <script src="app.js" defer></script>
 </head>
-
 <body>
-    <h1>ToDo app</h1>
+    <h1>To-Do App</h1>
     <div class="wrapper">
-        <form>
-            <input id="todo-input" type="text" placeholder="Write your todo here!" autocomplete="off">
-            <button id="addBtn">Add</button>
+        <form action="">
+            <input type="text" id="todo-input" placeholder="Add a new task..." autocomplete="off">
+            <button id="add-button">Add</button>
         </form>
         <ul id="todo-list">
             <li class="todo">
                 <input type="checkbox" id="todo-1">
-                <label for="todo-1" class="customCheckBox">
-                    <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
-                        <path
-                            d="m424.04-313.89 263.27-263.26-39.73-39.73-223.54 223.53-112.39-112.38L271.92-466l152.12 152.11Zm56.05 205.81q-77.15 0-145.06-29.32-67.92-29.33-118.16-79.6-50.23-50.27-79.51-118.05-29.28-67.79-29.28-144.86 0-77.15 29.32-145.06 29.33-67.92 79.6-118.16 50.27-50.23 118.05-79.51 67.79-29.28 144.86-29.28 77.15 0 145.06 29.32 67.92 29.33 118.16 79.6 50.23 50.27 79.51 118.05 29.28 67.79 29.28 144.86 0 77.15-29.32 145.06-29.33 67.92-79.6 118.16-50.27 50.23-118.05 79.51-67.79 29.28-144.86 29.28Zm-.1-55.96q131.89 0 223.93-92.02 92.04-92.03 92.04-223.93 0-131.89-92.02-223.93-92.03-92.04-223.93-92.04-131.89 0-223.93 92.02-92.04 92.03-92.04 223.93 0 131.89 92.02 223.93 92.03 92.04 223.93 92.04ZM480-480Z" />
+                <label class="custom-checkbox" for="todo-1">
+                    <svg fill="transparent" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px">
+                        <path d="M382-240 154-468l57-57 171 171 367-367 57 57-424 424Z"/>
                     </svg>
                 </label>
-                <label for="todo-1" class="todo-text">Jogging</label>
-                <button class="delete-btn">
-                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
-                        fill="#e3e3e3">
-                        <path
-                            d="M294.73-148.08q-28.26 0-48.26-20-20.01-20.01-20.01-48.27v-501.23h-39.19v-55.89h174.35v-33.84h237.57v33.77h174.35v55.96h-39.2v501.32q0 28.35-19.91 48.27-19.92 19.91-48.35 19.91H294.73Zm383.65-569.5H282.42v501.23q0 5.39 3.46 8.85 3.47 3.46 8.85 3.46h371.35q4.61 0 8.46-3.84 3.84-3.85 3.84-8.47v-501.23ZM380.19-282.92h55.96v-355.96h-55.96v355.96Zm144.46 0h55.96v-355.96h-55.96v355.96ZM282.42-717.58V-204.04v-513.54Z" />
+                <label for="todo-1" class="todo-text">
+                    Sample Task 1
+                </label>
+                <button type="button" class="delete-button">
+                    <svg fill="var(--secondary-color)" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px">
+                        <path d="M294.73-148.08q-28.26 0-48.26-20-20.01-20.01-20.01-48.27v-501.23h-39.19v-55.89h174.35v-33.84h237.57v33.77h174.35v55.96h-39.2v501.32q0 28.35-19.91 48.27-19.92 19.91-48.35 19.91H294.73Zm383.65-569.5H282.42v501.23q0 5.39 3.46 8.85 3.47 3.46 8.85 3.46h371.35q4.61 0 8.46-3.84 3.84-3.85 3.84-8.47v-501.23ZM380.19-282.92h55.96v-355.96h-55.96v355。96Zm144。46 0h55。96v-355。96h-55。96v355。96ZM282。42-717。58V-204。04v-513。54Z"/>
                     </svg>
                 </button>
             </li>
             <li class="todo">
                 <input type="checkbox" id="todo-2">
-                <label for="todo-2" class="customCheckBox">
-                    <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
-                        <path
-                            d="m424.04-313.89 263.27-263.26-39.73-39.73-223.54 223.53-112.39-112.38L271.92-466l152.12 152.11Zm56.05 205.81q-77.15 0-145.06-29.32-67.92-29.33-118.16-79.6-50.23-50.27-79.51-118.05-29.28-67.79-29.28-144.86 0-77.15 29.32-145.06 29.33-67.92 79.6-118.16 50.27-50.23 118.05-79.51 67.79-29.28 144.86-29.28 77.15 0 145.06 29.32 67.92 29.33 118.16 79.6 50.23 50.27 79.51 118.05 29.28 67.79 29.28 144.86 0 77.15-29.32 145.06-29.33 67.92-79.6 118.16-50.27 50.23-118.05 79.51-67.79 29.28-144.86 29.28Zm-.1-55.96q131.89 0 223.93-92.02 92.04-92.03 92.04-223.93 0-131.89-92.02-223.93-92.03-92.04-223.93-92.04-131.89 0-223.93 92.02-92.04 92.03-92.04 223.93 0 131.89 92.02 223.93 92.03 92.04 223.93 92.04ZM480-480Z" />
+                <label class="custom-checkbox" for="todo-2">
+                    <svg fill="transparent" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px">
+                        <path d="M382-240 154-468l57-57 171 171 367-367 57 57-424 424Z"/>
                     </svg>
                 </label>
-                <label for="todo-2" class="todo-text">Jogging</label>
-                <button class="delete-btn">
-                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
-                        fill="#e3e3e3">
-                        <path
-                            d="M294.73-148.08q-28.26 0-48.26-20-20.01-20.01-20.01-48.27v-501.23h-39.19v-55.89h174.35v-33.84h237.57v33.77h174.35v55.96h-39.2v501.32q0 28.35-19.91 48.27-19.92 19.91-48.35 19.91H294.73Zm383.65-569.5H282.42v501.23q0 5.39 3.46 8.85 3.47 3.46 8.85 3.46h371.35q4.61 0 8.46-3.84 3.84-3.85 3.84-8.47v-501.23ZM380.19-282.92h55.96v-355.96h-55.96v355.96Zm144.46 0h55.96v-355.96h-55.96v355.96ZM282.42-717.58V-204.04v-513.54Z" />
+                <label for="todo-2" class="todo-text">
+                    Sample Task 2
+                </label>
+                <button type="button" class="delete-button">
+                    <svg fill="var(--secondary-color)" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px">
+                        <path d="M294.73-148.08q-28.26 0-48.26-20-20.01-20.01-20.01-48.27v-501.23h-39.19v-55.89h174.35v-33.84h237.57v33.77h174.35v55.96h-39.2v501.32q0 28.35-19.91 48.27-19.92 19.91-48.35 19.91H294.73Zm383.65-569.5H282.42v501.23q0 5.39 3.46 8.85 3.47 3.46 8.85 3.46h371.35q4.61 0 8.46-3.84 3.84-3.85 3.84-8.47v-501.23ZM380.19-282.92h55.96v-355.96h-55.96v355。96Zm144。46 0h55。96v-355。96h-55。96v355。96ZM282。42-717。58V-204。04v-513。54Z"/>
                     </svg>
                 </button>
             </li>
         </ul>
     </div>
 </body>
-
 </html>
